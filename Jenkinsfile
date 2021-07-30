@@ -13,7 +13,7 @@ pipeline {
             steps {
                 echo 'testing the application...'
                 echo "discovering where I am with so that I can run tests"
-                sh "ls"
+                sh "pytest api/test_api.py"
             }
         }
 
