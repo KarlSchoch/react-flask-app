@@ -12,8 +12,10 @@ pipeline {
         stage('test') {
             steps {
                 echo 'testing the application...'
-                echo "discovering where I am with so that I can run tests"
-                sh "pytest api/test_api.py"
+                withPythonEnv('python3') {
+                    sh 'pip install flask pytest'
+                    sh 'pytest api/test_api.py'
+                }
             }
         }
 
