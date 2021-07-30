@@ -7,12 +7,13 @@ pipeline {
         stage('build') {
             steps {
                 echo 'building the application...'
-                echo "building version ${NEW_VERSION}"
             }
         }
         stage('test') {
             steps {
                 echo 'testing the application...'
+                echo "discovering where I am with so that I can run tests"
+                sh "ls"
             }
         }
 
