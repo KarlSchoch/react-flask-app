@@ -35,9 +35,9 @@ pipeline {
                                 configName: "${SSH_CONFIG}",
                                 transfers: [
                                     // Remove previous files
-                                    sshTransfer(
-                                        execCommand: 'rm -R api public src node_modules | rm packaged.zip yarn.lock package.json package-lock.json'
-                                    ),
+                                    //sshTransfer(
+                                    //    execCommand: 'rm -R api public src node_modules | rm packaged.zip yarn.lock package.json package-lock.json'
+                                    //),
                                     // Copy over packaged file and unzip it
                                     sshTransfer(
                                         sourceFiles: 'packaged.zip',
