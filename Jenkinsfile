@@ -50,7 +50,7 @@ pipeline {
                                     // Command to install python dependencies: python -m pip install -r api/requirements.txt
                                     sshTransfer(
                                         execCommand: 'python api/api.py'
-                                    )
+                                    ),
                                     // Start Application
                                     sshTransfer(
                                         execCommand: 'npm install | yarn start'
