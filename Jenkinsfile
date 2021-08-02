@@ -20,26 +20,26 @@ pipeline {
             }
         }
         stage('deploy') {
-            //environment {
-            //    EC2_ACCESS_KEY = credentials('application-server')
-            //}
+            environment {
+                SSH_CONFIG = 'application'
+            }
             steps {
                 echo 'deploying the application...'
                 echo 'listing all of the files to copy'
                 sh 'ls'
+                sh 'zip -r packaged.zip api node_modules public src package.json yarn.lock'
                 echo 'Testing whether I can access another computer'
-                //sh 'ssh -i ${EC2_ACCESS_KEY} ec2-user@ec2-3-23-101-33.us-east-2.compute.amazonaws.com ls'
                 script {
                     sshPublisher(
                         continueOnError: false, failOnError: true,
                         publishers: [
                             sshPublisherDesc(
-                                configName: 'application',
+                                configName: "${SSH_CONFIG}",
                                 transfers: [
                                     sshTransfer(
-                                        sourceFiles: 'README.md',
-                                        remoteDirectory: '/home/ec2-user',
-                                        execCommand: 'ls'
+                                        sourceFiles: 'packaged.zip',
+                                        remoteDirectory: '',
+                                        //execCommand: 'ls'
                                     )
                                 ]
                             )
