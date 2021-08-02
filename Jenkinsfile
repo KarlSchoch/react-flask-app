@@ -25,10 +25,8 @@ pipeline {
             }
             steps {
                 echo 'deploying the application...'
-                echo 'listing all of the files to copy'
-                sh 'ls'
+                echo 'Zipping files'
                 sh 'zip -r packaged.zip api node_modules public src package.json yarn.lock'
-                echo 'Testing whether I can access another computer'
                 script {
                     sshPublisher(
                         continueOnError: false, failOnError: true,
@@ -53,8 +51,11 @@ pipeline {
                                     ),
                                     // Start Application
                                     sshTransfer(
-                                        execCommand: 'npm install | yarn start'
-                                    )
+                                        execCommand: 'npm install'
+                                    ),
+                                    sshTransfer(
+                                        execCommand: 'yarn start'
+                                    ),
                                 ]
                             )
                         ]
