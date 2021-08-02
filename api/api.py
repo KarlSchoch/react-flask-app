@@ -10,3 +10,6 @@ def get_current_time():
 @app.route('/jenkins', methods = ['GET'])
 def jenkins():
     return {'resp': 'It ran'}
+
+if __name__ == "main":
+    app.run()

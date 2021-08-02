@@ -36,13 +36,24 @@ pipeline {
                             sshPublisherDesc(
                                 configName: "${SSH_CONFIG}",
                                 transfers: [
-                                    //sshTransfer(
-                                    //    execCommand: 'rm packaged.zip'
-                                    //),
+                                    // Remove previous files
+                                    sshTransfer(
+                                        execCommand: 'rm -R api public src node_modules | rm packaged.zip yarn.lock package.json package-lock.json'
+                                    ),
+                                    // Copy over packaged file and unzip it
                                     sshTransfer(
                                         sourceFiles: 'packaged.zip',
                                         remoteDirectory: '',
                                         execCommand: 'unzip packaged.zip'
+                                    ),
+                                    // Start flask application
+                                    // Command to install python dependencies: python -m pip install -r api/requirements.txt
+                                    sshTransfer(
+                                        execCommand: 'python api/api.py'
+                                    )
+                                    // Start Application
+                                    sshTransfer(
+                                        execCommand: 'npm install | yarn start'
                                     )
                                 ]
                             )
