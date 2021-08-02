@@ -24,9 +24,8 @@ pipeline {
                 echo 'deploying the application...'
                 echo 'listing all of the files to copy'
                 sh 'ls'
-                echo 'adding text to see if jenkins scanning works'
-                //echo 'Trying to copy README for kicks'
-                //sh 'cp README.md /home/ec2-user/README.md'
+                echo 'Testing whether I can access another computer'
+                sh "ssh ec2-user@ec2-3-23-101-33.us-east-2.compute.amazonaws.com ls"
             }
         }
     }
