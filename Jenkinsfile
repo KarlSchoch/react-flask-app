@@ -20,12 +20,15 @@ pipeline {
             }
         }
         stage('deploy') {
+            environment {
+                EC2_ACCESS_KEY = credentials('application-server')
+            }
             steps {
                 echo 'deploying the application...'
                 echo 'listing all of the files to copy'
                 sh 'ls'
                 echo 'Testing whether I can access another computer'
-                sh "ssh ec2-user@ec2-3-23-101-33.us-east-2.compute.amazonaws.com ls"
+                sh "ssh -i ${EC2_ACCESS_KEY} ec2-user@ec2-3-23-101-33.us-east-2.compute.amazonaws.com ls"
             }
         }
     }
