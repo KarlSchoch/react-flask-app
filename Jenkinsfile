@@ -37,7 +37,9 @@ pipeline {
                                 configName: 'application',
                                 transfers: [
                                     sshTransfer(
-                                        execCommand: "ls"
+                                        sourceFiles: 'README.md',
+                                        remoteDirectory: '/home/ec2-user',
+                                        execCommand: 'ls'
                                     )
                                 ]
                             )
