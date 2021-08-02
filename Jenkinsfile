@@ -34,7 +34,9 @@ pipeline {
                         continueOnError: false, failOnError: true,
                         publishers: [
                             transfers: [
-                                execCommand: "ls"
+                                sshTransfer(
+                                    execCommand: "ls"
+                                )
                             ]
                         ]
                     )
