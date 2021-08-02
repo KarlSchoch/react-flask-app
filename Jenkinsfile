@@ -36,9 +36,9 @@ pipeline {
                             sshPublisherDesc(
                                 configName: "${SSH_CONFIG}",
                                 transfers: [
-                                    sshTransfer(
-                                        execCommand: 'rm packaged.zip'
-                                    ),
+                                    //sshTransfer(
+                                    //    execCommand: 'rm packaged.zip'
+                                    //),
                                     sshTransfer(
                                         sourceFiles: 'packaged.zip',
                                         remoteDirectory: '',
