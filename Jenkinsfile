@@ -20,9 +20,9 @@ pipeline {
             }
         }
         stage('deploy') {
-            environment {
-                EC2_ACCESS_KEY = credentials('application-server')
-            }
+            //environment {
+            //    EC2_ACCESS_KEY = credentials('application-server')
+            //}
             steps {
                 echo 'deploying the application...'
                 echo 'listing all of the files to copy'
@@ -33,11 +33,14 @@ pipeline {
                     sshPublisher(
                         continueOnError: false, failOnError: true,
                         publishers: [
-                            transfers: [
-                                sshTransfer(
-                                    execCommand: "ls"
-                                )
-                            ]
+                            sshPublisherDesc(
+                                configName: 'application',
+                                transfers: [
+                                    sshTransfer(
+                                        execCommand: "ls"
+                                    )
+                                ]
+                            )
                         ]
                     )
                 }
