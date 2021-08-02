@@ -46,16 +46,16 @@ pipeline {
                                     ),
                                     // Start flask application
                                     // Command to install python dependencies: python -m pip install -r api/requirements.txt
-                                    sshTransfer(
-                                        execCommand: 'python api/api.py'
-                                    ),
+                                    //sshTransfer(
+                                    //    execCommand: 'python api/api.py'
+                                    //),
                                     // Start Application
                                     sshTransfer(
                                         execCommand: 'npm install'
-                                    ),
-                                    sshTransfer(
-                                        execCommand: 'yarn start'
-                                    ),
+                                    )//,
+                                    //sshTransfer(
+                                    //    execCommand: 'yarn start'
+                                    //),
                                 ]
                             )
                         ]
