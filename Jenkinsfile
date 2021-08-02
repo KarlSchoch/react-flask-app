@@ -37,10 +37,15 @@ pipeline {
                                 configName: "${SSH_CONFIG}",
                                 transfers: [
                                     sshTransfer(
-                                        sourceFiles: 'packaged.zip',
-                                        remoteDirectory: '',
-                                        //execCommand: 'ls'
-                                    )
+                                        //sourceFiles: 'packaged.zip',
+                                        //remoteDirectory: '',
+                                        execCommand: 'rm packaged.zip'
+                                    ),
+                                    //sshTransfer(
+                                    //    sourceFiles: 'packaged.zip',
+                                    //    remoteDirectory: '',
+                                    //    //execCommand: 'ls'
+                                    //)
                                 ]
                             )
                         ]
