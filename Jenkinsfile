@@ -24,6 +24,7 @@ pipeline {
                 echo 'deploying the application...'
                 echo 'listing all of the files to copy'
                 sh 'ls'
+                echo 'adding text to see if jenkins scanning works'
                 //echo 'Trying to copy README for kicks'
                 //sh 'cp README.md /home/ec2-user/README.md'
             }
