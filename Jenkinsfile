@@ -29,7 +29,7 @@ pipeline {
                 sh 'zip -r packaged.zip api node_modules public src package.json yarn.lock'
                 script {
                     sshPublisher(
-                        continueOnError: false, failOnError: true,
+                        continueOnError: true, failOnError: false,
                         publishers: [
                             sshPublisherDesc(
                                 configName: "${SSH_CONFIG}",
